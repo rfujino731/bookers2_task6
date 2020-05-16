@@ -2,10 +2,12 @@ class BooksController < ApplicationController
 
   def show
   	@book = Book.find(params[:id])
+    @user = User.find(@book.user_id)
   end
 
   def index
   	@books = Book.all #一覧表示するためにBookモデルの情報を全てくださいのall
+    @book = Book.new
   end
 
   def create
@@ -27,7 +29,7 @@ class BooksController < ApplicationController
   def update
   	@book = Book.find(params[:id])
   	if @book.update(book_params)
-  		redirect_to @book, notice: "successfully updated book!"
+  		 redirect_to @book, notice: "successfully updated book!"
   	else #if文でエラー発生時と正常時のリンク先を枝分かれにしている。
   		render "edit"
   	end
