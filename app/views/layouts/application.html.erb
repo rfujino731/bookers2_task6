@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -11,8 +12,9 @@
 
   <body>
     <!--ヘッダーの記述-->
+    
     <<header class="navbar navbar-fixed-top navbar-inverse">
-      <div class="container">
+     <div class="container">
 
         <nav class="nav navbar-nav navbar-left">
           <span>Bookers</span>
@@ -34,15 +36,15 @@
           </ul>
         </nav>
 
-      </div>
+     </div>
     </header>
     <!--ヘッダーの記述-->
     <div class="container">
       <p id="notice"><%= notice %></p> <!--デバイスでnotice設定されているので呼び出してるだけ-->
-
+      <%= yield %>
     </div>
 
-    <%= yield %>
+    
     
   </body>
 </html>

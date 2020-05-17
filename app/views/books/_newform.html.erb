@@ -1,15 +1,15 @@
 <%= form_for(book) do |f| %>
 	<div class="field row">
-		<%= f.label :title %>
-		<%= f.text_field :title, class: "col-xs-12 book_title" %>
+		<%= f.label :title %><br>
+		<%= f.text_field :title, class:"form-group form-control" %>
 	</div>
 
 	<div class="field row">
-		<%= f.label :body %> <!-- ここを変更 -->
-		<%= f.text_area :body, class: "col-xs-12 book_body" %>
+		<%= f.label :body %> <br><!-- ここを変更 -->
+		<%= f.text_area :body, class:"form-group form-control" %>
 	</div>
 
 	<div class="actions row">
-		<%= f.submit class: "btn btn-primary col-xs-12" %>
+		<%= f.submit class:"btn btn-primary btn-block" %>
 	</div>
 <% end %>
