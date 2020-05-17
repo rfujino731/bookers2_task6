@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+before_action :authenticate_user!
 
   def show
   	@book = Book.find(params[:id])
@@ -27,8 +28,8 @@ class BooksController < ApplicationController
   	  @book = Book.find(params[:id])
       if @book.user_id == current_user.id
       
-    else
-      redirect_to books_path
+      else
+        redirect_to books_path
     end
   end
 
