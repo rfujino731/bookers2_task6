@@ -17,9 +17,9 @@ before_action :authenticate_user!
     @book.user_id = current_user.id #bookにuser.idを渡すことで、データベースにuser.idが保存される
     if @book.save #入力されたデータをdbに保存する。
   		redirect_to(book_path(@book.id), notice: "successfully created book!")#保存された場合の移動先を指定。
+
   	else
   		@books = Book.all
-
   		render :index
   	end
   end

@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-	before_action :baria_user, only: [:update]
+	before_action :baria_user, only: [:update,:edit]
 
   def show
-  	@user = User.find(params[:id])
-  	@books = @user.books
+  	 @user = User.find(params[:id])
+  	 @books = @user.books
   	@book = Book.new #new bookの新規投稿で必要（保存処理はbookコントローラー側で実施）
   end
 
@@ -15,11 +15,11 @@ class UsersController < ApplicationController
   
   def edit
       @user = User.find(params[:id])
-      if @user == current_user
+      # if @user == current_user
 
-      else
-         redirect_to user_path(current_user.id)
-      end
+      # else
+      #    redirect_to user_path(current_user.id)
+      # end
   end
 
   def update
