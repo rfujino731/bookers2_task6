@@ -1,5 +1,16 @@
 <div class="row">
 	<div class="col-xs-3"> 
+	<%= notice %>
+	
+	<% if @book.errors.any? %>
+	<ul>
+		<% @book.errors.full_messages.each do |message| %>
+			<li class = "error_message">error:<%= message %></li>
+		<% end %>
+    </ul>
+	<% end %>
+
+
 
 		<h2>User info</h2>
 		<%= render 'users/profile', user: current_user %>
