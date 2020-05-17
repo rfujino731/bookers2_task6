@@ -3,6 +3,14 @@
 
 <h1>Editing Book</h1>
 
+<% if @book.errors.any? %>
+	<ul>
+		<% @book.errors.full_messages.each do |message| %>
+			<li class = "error_message">error:<%= message %></li>
+		<% end %>
+    </ul>
+<% end %>
+
 <%= render "books/newform", book: @book %>
 <%= link_to "Show", @book, class: "book_#{@book.id}" %>
 <%= link_to "Back", books_path, class: "back" %>
