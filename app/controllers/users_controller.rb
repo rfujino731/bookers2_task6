@@ -3,9 +3,16 @@ class UsersController < ApplicationController
 	before_action :baria_user, only: [:update,:edit]
 
   def show
-  	 @user = User.find(params[:id])
-  	 @books = @user.books
-  	@book = Book.new #new bookの新規投稿で必要（保存処理はbookコントローラー側で実施）
+    @book = Book.new
+    @myuser = User.find(current_user.id)
+    @linkuser = User.find(params[:id])
+    if @myuser == @linkuser
+       @user = User.find(current_user.id)
+       @books = Book.where(user_id:@user)
+    else
+       @user = User.find(params[:id])
+       @books = Book.where(user_id:@user)
+    end
   end
 
   def index
@@ -15,11 +22,6 @@ class UsersController < ApplicationController
   
   def edit
       @user = User.find(params[:id])
-      # if @user == current_user
-
-      # else
-      #    redirect_to user_path(current_user.id)
-      # end
   end
 
   def update
