@@ -11,18 +11,28 @@
 	</div>
 
 	<div class="col-xs-9">
+	<%= notice %>
+	
+	<% if @book.errors.any? %>
+	<ul>
+		<% @book.errors.full_messages.each do |message| %>
+			<li class = "error_message">error:<%= message %></li>
+		<% end %>
+    </ul>
+	<% end %>
 		<h2>Book detail</h2>
 
 		<table class="table">
 				<tr>
 					<td>
 						<%= link_to (@book.user) do %>
-						<%= attachment_image_tag(@book.user, :profile_image, :fill, 100, 100, fallback: "no-image-mini.jpg") %><br>
+						<%= attachment_image_tag(@book.user, :profile_image,size: "50x50", fallback: "no-image-mini.jpg") %><br>
 						<%= @book.user.name %>
 						<% end %>
 					</td>
 					<td><%= link_to @book.title, @book %></td>
 					<td><%= @book.body %></td>
+					<td>コメント数:<%= @book.book_comments.count %></td>
 
 
 					<% if  @user.id == current_user.id %>
@@ -31,6 +41,25 @@
 					<% end %>
 				</tr>
 			</table>
+
+
+
+		
+
+
+		<h3>コメント</h3>
+		<%= form_for([@book, @book_comment]) do |f| %>
+		<%= f.text_area :comment, class:"" %>
+		<%= f.submit "送信" %>
+		<% end %>
+
+		<h3>コメント一覧</h3>
+		<ol>
+			<%= @book.book_comments.each do |book_comment| %>
+			<li><%= book_comment.comment %>
+			<% end %>
+		</ol>
+
 
 	</div>
 </div>
