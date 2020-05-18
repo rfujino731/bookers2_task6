@@ -54,11 +54,14 @@
 		<% end %>
 
 		<h3>コメント一覧</h3>
-		<ol>
+		<table>
 			<%= @book.book_comments.each do |book_comment| %>
-			<li><%= book_comment.comment %>
-			<% end %>
-		</ol>
+			<tr>
+				<td><%= book_comment.comment %></td>
+				<td><%= link_to "Destroy",book_book_comment_path(@book, book_comment), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_book_#{@book.id}" %></td>
+				<% end %>
+			</tr>
+		</table>
 
 
 	</div>

@@ -7,7 +7,7 @@ class BookCommentsController < ApplicationController
 		@comment.book_id = @book.id
 		if @comment.save
 		   @user = User.find(@book.user_id)
-		   redirect_to(book_path(@book.id),notice: "successfully created book!")
+		   redirect_to(book_path(@book.id),notice: "successfully created comment!")
 		else
 		   @user = User.find(@book.user_id)
 		   @book = Book.find(@book.id)
@@ -16,7 +16,14 @@ class BookCommentsController < ApplicationController
 		end
 	end
 
-	def delete
+	def destroy
+		# byebug
+		@book = Book.find(params[:book_id])
+		# p @book
+		@comment = @book.book_comments.find(params[:id])
+		# p @comment
+		@comment.destroy
+		redirect_to(book_path(@book.id),notice: "successfully deleted comment!")
 	end
 
 	private
