@@ -12,4 +12,5 @@ class User < ApplicationRecord
 
   has_many :books
   has_many :book_comments, dependent: :destroy
+  has_many :favorite, dependent: :destroy
 end

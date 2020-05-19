@@ -7,4 +7,8 @@ class Book < ApplicationRecord
 
 	belongs_to :user, optional: true
 	has_many :book_comments, dependent: :destroy
+	has_many :favorite, dependent: :destroy
+	def favorited_by?(user)
+		favorite.where(user_id: user.id).exists?
+	end
 end
