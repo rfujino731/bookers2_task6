@@ -24,7 +24,10 @@
     <!-- </strong> -->
     </th>
     <th>
-        <a href="<%= following_user_path(user) %>"><%= user.following.count %></a>
+    	<a href="<%= following_user_path(user) %>">
+        <%= user.following.count %>
+    	</a>
+
     </th>
   </tr>
   <tr>
