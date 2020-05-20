@@ -48,8 +48,6 @@
 	  <% end %>
 
 	  <!-- フォローボタン -->
-	  <% if user.id == current_user.id %>
-	  <% else %>
-
+	  <% if user.id != current_user.id %>
 	  	<%= render 'follow_form', user: user %>
 	  <% end %>
