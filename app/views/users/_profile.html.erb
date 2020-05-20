@@ -15,35 +15,34 @@
 		</tr>
 	</table>
 
-<% user ||= current_user %>
-<table class="table">
-  <tr>
-    <th>
-    <!-- <strong id="following" class="stat"> -->
-        <p>following</p>
-    <!-- </strong> -->
-    </th>
-    <th>
-    	<a href="<%= following_user_path(user) %>">
-        <%= user.following.count %>
-    	</a>
+	<% user ||= current_user %>
+	<table class="table">
+	  <tr>
+	    <th>
+	        <p>following</p>
+	    </th>
+	    <th>
+	    	<%= link_to following_user_path(user) do %>
+	    	<!-- <a href="<%= following_user_path(user) %>"></a? -->
+	        <%= user.following.count %>
+	        <% end %>
+	    </th>
+	  </tr>
+	  <tr>
+	    <th>
+	       <p>followers</p>
+	    </th>
+	    <th>
+	       <%= link_to followers_user_path(user) do %>
+	       <!-- <a href="<%= followers_user_path(user) %>"></a> -->
+	       <%= user.followers.count %>
+	       <% end %>
+	    </th>
+	  </tr>
+	</table>
 
-    </th>
-  </tr>
-  <tr>
-    <th>
-    <!-- <strong id="followers" class="stat"> -->
-       <p>followers</p>
-    <!-- </strong> -->
-    </th>
-    <th>
-       <a href="<%= followers_user_path(user) %>"><%= user.followers.count %></a>
-    </th>
-  </tr>
-</table>
-
-  <% if user.id == current_user.id %>
-      <div class="row">
-        <%= link_to '',edit_user_path(user), class:"btn btn-default btn-lg btn-block glyphicon glyphicon-wrench" %>
-      </div>
-  <% end %>
+	  <% if user.id == current_user.id %>
+	      <div class="row">
+	        <%= link_to '',edit_user_path(user), class:"btn btn-default btn-lg btn-block glyphicon glyphicon-wrench" %>
+	      </div>
+	  <% end %>
