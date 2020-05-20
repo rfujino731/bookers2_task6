@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-	before_action :baria_user, only: [:update,:edit]
+	before_action :baria_user, only: [:update,:edit]#直接url防止のため。コードにしたにprivateを設定している
 
   def show
     @book = Book.new
