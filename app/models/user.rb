@@ -24,4 +24,7 @@ class User < ApplicationRecord
   # railsのルールなら、source :followerは省略できるが(followersの単数形なので)、 
   # source: :followedとの対比を
   # 分かり易くするためにあえて記述
+  def following?(other_user)
+      following.include?(other_user)
+  end
 end
