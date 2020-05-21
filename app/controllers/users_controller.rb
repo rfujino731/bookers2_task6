@@ -50,8 +50,7 @@ class UsersController < ApplicationController
       render 'show_follow'
   end
 
-  def search
-    # byebug
+  def user_search
     if params[:name].present?
        @users = User.where('name LIKE ?', "%#{params[:name]}")
        @user = current_user
@@ -66,10 +65,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def user_search
-
-  end
-
+  
   private
   def user_params
   	params.require(:user).permit(:name, :introduction, :profile_image)

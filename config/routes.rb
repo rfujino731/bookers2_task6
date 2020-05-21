@@ -4,8 +4,7 @@ Rails.application.routes.draw do
   get 'home/about' => "home#about"
   devise_for :users
   resources :users, only: [:show,:index,:edit,:update] do
-    get :search, on: :collection
-    get 'user_search' => "user#user_search", on: :collection
+    get :user_search, on: :collection
   	member do
   		get :following, :followers
   	end
@@ -14,6 +13,7 @@ Rails.application.routes.draw do
   resources :books do
   	resources :book_comments, only: [:create, :destroy]
   	resource :favorites, only: [:create, :destroy]
+    get :book_search, on: :collection
   end
   resources :relationships, only: [:create, :destroy]
 end
