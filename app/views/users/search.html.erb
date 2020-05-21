@@ -1,0 +1,46 @@
+<div class="row">
+	<div class="col-xs-3">
+	
+
+		<h2>User info</h2>
+		<%= render 'users/profile', user: current_user %>
+		<h2>New book</h2>
+		<%= render 'books/newform', book: @book %>
+	</div>
+
+	<div class="col-xs-9">
+	
+<!-- 
+			<%= form_with url: search_users_path, method: :get, local: true do |f| %>
+			<%= f.text_field :name %>
+			<%= f.submit :search %>
+			<% end %>
+			 -->
+	<h2>user_search</h2>
+		<h2>Users</h2>
+		<!--users一覧 -->
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>image</th>
+					<th>name</th>
+					<th colspan="5"></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<% @users.each do |user| %>
+				<tr>
+					<td><%= attachment_image_tag(user, :profile_image, size: "50x50", fallback: "no-image-mini.jpg") %></td>
+					<td><%= user.name%></td>
+					<td>フォロー数:<%= user.following.count %></td>
+					<td>フォロワー数:<%= user.followers.count %></td>
+					<td><%= render 'follow_form', user: user %></td>
+					<td><%= link_to "Show", user_path(user), class: "user_#{user.id}" %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

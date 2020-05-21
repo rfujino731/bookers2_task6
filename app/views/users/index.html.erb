@@ -11,6 +11,14 @@
 	</div>
 
 	<div class="col-xs-9">
+		<!-- 検索画面表示 -->
+		<h2>user search</h2>
+			<%= form_with url: search_users_path, method: :get, local: true do |f| %>
+			<%= f.text_field :name %>
+			<%= f.submit :search %>
+		<% end %>
+		
+		<!-- user一覧表示 -->
 		<h2>Users</h2>
 		<!--users一覧 -->
 		<table class="table">
