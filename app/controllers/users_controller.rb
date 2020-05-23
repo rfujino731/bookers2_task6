@@ -54,10 +54,24 @@ class UsersController < ApplicationController
     # byebug
     if params[:item] == "user"
       if params[:name].present?
-         @users = User.where('name LIKE ?', "%#{params[:name]}%")
-         @user = current_user
-         @book = Book.new #new bookの新規投稿で必要（保存処理はbookコントローラー側で実施）
+          if params[:matching] == "perfect"
+            @users = User.where('name LIKE ?', "#{params[:name]}")
+            @user = current_user
+            @book = Book.new #new bookの新規投稿で必要（保存処理はbookコントローラー側で実施）
          # redirect_to user_search_users_path
+          elsif params[:matching] == "prefix"
+              @users = User.where('name LIKE ?', "#{params[:name]}%")
+              @user = current_user
+              @book = Book.new
+          elsif params[:matching] == "backword"
+              @users = User.where('name LIKE ?', "%#{params[:name]}")
+              @user = current_user
+              @book = Book.new
+          elsif params[:matching] == "partial"
+              @users = User.where('name LIKE ?', "%#{params[:name]}%")
+              @user = current_user
+              @book = Book.new
+          end
       else
         @users = User.none
         # @users = User.all #一覧表示するためにUserモデルのデータを全て変数に入れて取り出す。
