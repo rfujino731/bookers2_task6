@@ -80,12 +80,27 @@ class UsersController < ApplicationController
       end
     else
       if params[:name].present?
-         # p params[:name]
-         @books = Book.where('title LIKE ?', "%#{params[:name]}%")
-         # p @books
-         @user = current_user
-         @book = Book.new #new bookの新規投稿で必要（保存処理はbookコントローラー側で実施）
-         render book_search_books_path
+          if params[:matching] == "perfect"
+             @books = Book.where('title LIKE ?', "#{params[:name]}")
+             @user = current_user
+             @book = Book.new #new bookの新規投稿で必要（保存処理はbookコントローラー側で実施）
+             render book_search_books_path
+          elsif params[:matching] == "prefix"
+              @books = Book.where('title LIKE ?', "#{params[:name]}%")
+              @user = current_user
+              @book = Book.new
+              render book_search_books_path
+          elsif params[:matching] == "backword"
+              @books = Book.where('title LIKE ?', "%#{params[:name]}")
+              @user = current_user
+              @book = Book.new
+              render book_search_books_path
+          elsif params[:matching] == "partial"
+              @books = Book.where('title LIKE ?', "%#{params[:name]}%")
+              @user = current_user
+              @book = Book.new
+              render book_search_books_path
+          end
       else
           @users = User.none
           @book = Book.new #new bookの新規投稿で必要（保存処理はbookコントローラー側で実施）
