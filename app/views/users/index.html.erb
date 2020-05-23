@@ -16,35 +16,35 @@
 
 		<p>選択 <span id="span"></span></p>
         <select id="pullsearch" onChange = "user_book()">
-            <option value="user">---</option>
+            <option value="---">---</option>
             <option value="user">user</option>
             <option value="book">book</option>
         </select>
 
-         <!-- <script>
-        function user_book(){
+        <script>
+        	function user_book(){
             const str = document.getElementById("pullsearch").value;
 
-            if(str=="user"){
-				<%= form_with url: user_search_users_path, method: :get, local: true do |f| %>
-				<%= f.text_field :name %>
-				<%= f.submit :search %>
-				<% end %>
-			}else{
+	            if(str=="user"){
+	                document.getElementById("span").textContent = "No.1:" + str;
 
-				<%= form_with url: book_search_books_path, method: :get, local: true do |f| %>
-				<%= f.text_field :title %>
-				<%= f.submit :search %>
-				<% end %>
-				}
-		</script> -->
+					// <%= form_with url: user_search_users_path, method: :get, local: true do |f| %>
+					// <%= f.text_field :name %>
+					// <%= f.submit :search %>
+					// <% end %>
 
-		<script>
-			<%= form_with url: user_search_users_path, method: :get, local: true do |f| %>
-				<%= f.text_field :name %>
-				<%= f.submit :search %>
-				<% end %>
-		</script>
+	            }else if(str=="book"){
+	                document.getElementById("span").textContent = "No.2:" + str;
+	            }
+        }
+        </script>
+        			<h3>user検索フォーム</h3>
+					<%= form_with url: user_search_users_path, method: :get, local: true do |f| %>
+					<%= f.select :item,[["user","user"],["book","book"]] %>
+					<%= f.text_field :name %>
+					<%= f.submit :search %>
+					<% end %>
+
 
 		<!-- user一覧表示 -->
 		<h2>Users</h2>

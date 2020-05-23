@@ -37,14 +37,12 @@ before_action :authenticate_user!
   def book_search
     # byebug
     if params[:title].present?
-       @books = Book.where('title LIKE ?', "%#{params[:title]}")
+       @books = Book.where('title LIKE ?', "%#{params[:title]}#")
        @user = current_user
-       # @users = User.all #一覧表示するためにUserモデルのデータを全て変数に入れて取り出す。
        @book = Book.new #new bookの新規投稿で必要（保存処理はbookコントローラー側で実施）
        # redirect_to user_search_users_path
     else
       @books = Book.none
-      # @users = User.all #一覧表示するためにUserモデルのデータを全て変数に入れて取り出す。
       @book = Book.new #new bookの新規投稿で必要（保存処理はbookコントローラー側で実施）
       @user = current_user
       render 'index'

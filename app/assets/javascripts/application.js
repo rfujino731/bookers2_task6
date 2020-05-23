@@ -10,9 +10,40 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery 
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
 //= require jquery
 //= require bootstrap-sprockets
 //= require_tree .
+
+function user_book_2(){
+            const str = document.getElementById("pullsearch").value;
+
+            if(str=="user"){
+                document.getElementById("span").textContent = "No.1:" + str;
+
+				// <%= form_with url: user_search_users_path, method: :get, local: true do |f| %>
+				// <%= f.text_field :name %>
+				// <%= f.submit :search %>
+				// <% end %>
+
+            }else if(str == "book"){
+                document.getElementById("span").textContent = "No.2:" + str;
+            }
+        }
+
+
+		// <%= form_with url: user_search_users_path, method: :get, local: true do |f| %>
+		// 		<%= f.text_field :name %>
+		// 		<%= f.submit :search %>
+		// 		<% end %>
+
+
+
+		// <%= form_with url: book_search_books_path, method: :get, local: true do |f| %>
+		// 		<%= f.text_field :title %>
+		// 		<%= f.submit :search %>
+		// 		<% end %>
+
