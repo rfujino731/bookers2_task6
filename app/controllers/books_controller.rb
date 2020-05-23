@@ -35,11 +35,11 @@ before_action :authenticate_user!
   end
 
   def book_search
-    # byebug
+     # byebug
     if params[:title].present?
-       @books = Book.where('title LIKE ?', "%#{params[:title]}#")
+       @books = Book.where('title LIKE ?', "%#{params[:title]}%")
        @user = current_user
-       @book = Book.new #new bookの新規投稿で必要（保存処理はbookコントローラー側で実施）
+       @book = Book.new 
        # redirect_to user_search_users_path
     else
       @books = Book.none

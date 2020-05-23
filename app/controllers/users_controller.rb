@@ -51,6 +51,7 @@ class UsersController < ApplicationController
   end
 
   def user_search
+    # byebug
     if params[:item] == "user"
       if params[:name].present?
          @users = User.where('name LIKE ?', "%#{params[:name]}%")
@@ -65,8 +66,19 @@ class UsersController < ApplicationController
         render 'index'
       end
     else
-       @users = User.none
-       @book = Book.new
+      if params[:name].present?
+         # p params[:name]
+         @books = Book.where('title LIKE ?', "%#{params[:name]}%")
+         # p @books
+         @user = current_user
+         @book = Book.new #new bookの新規投稿で必要（保存処理はbookコントローラー側で実施）
+         render book_search_books_path
+      else
+          @users = User.none
+          @book = Book.new #new bookの新規投稿で必要（保存処理はbookコントローラー側で実施）
+          @user = current_user
+          render 'index'
+      end
     end
   end
 

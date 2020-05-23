@@ -11,14 +11,15 @@
 	<div class="col-xs-9">
 	
 
-			<%= form_with url: book_search_books_path, method: :get, local: true do |f| %>
+			
+			
+	<h2>book検索結果画面</h2>
+		<h2>books</h2>
+		<!--users一覧 -->
+		<%= form_with url: book_search_books_path, method: :get, local: true do |f| %>
 			<%= f.text_field :name %>
 			<%= f.submit :search %>
 			<% end %>
-			
-	<h2>book_search</h2>
-		<h2>books</h2>
-		<!--users一覧 -->
 
 		<table class="table table-hover table-inverse">
 			<thead>
