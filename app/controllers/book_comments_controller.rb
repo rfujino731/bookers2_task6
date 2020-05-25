@@ -7,6 +7,7 @@ class BookCommentsController < ApplicationController
 		@comment.book_id = @book.id
 		if @comment.save
 		   @user = User.find(@book.user_id)
+		   # Ajaxにしたので不要
 		   # redirect_to(book_path(@book.id),notice: "successfully created comment!")
 		else
 		   @user = User.find(@book.user_id)
