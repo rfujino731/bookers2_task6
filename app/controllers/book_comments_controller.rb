@@ -17,11 +17,8 @@ class BookCommentsController < ApplicationController
 	end
 
 	def destroy
-		# byebug
 		@book = Book.find(params[:book_id])
-		# p @book
 		@comment = @book.book_comments.find(params[:id])
-		# p @comment
 		@comment.destroy
 		redirect_to(book_path(@book.id),notice: "successfully deleted comment!")
 	end
