@@ -47,14 +47,14 @@
 			</table>
 
 		<h3 >コメント</h3>
-		<%= form_for([@book, @book_comment]) do |f| %>
+		<%= form_with(model: [@book, @book_comment], remote: true) do |f| %>
 			<%= f.text_area :comment, class:"form-group form-control" %>
 			<p><%= f.submit "送信", class:"pull-right" %></p>
 		<% end %>
 
 	</div>
-	
-	<div class="col-xs-9">	
+
+	<div class="col-xs-9">
 
 		<h3>コメント一覧</h3>
 		<div>

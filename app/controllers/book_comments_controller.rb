@@ -7,7 +7,7 @@ class BookCommentsController < ApplicationController
 		@comment.book_id = @book.id
 		if @comment.save
 		   @user = User.find(@book.user_id)
-		   redirect_to(book_path(@book.id),notice: "successfully created comment!")
+		   # redirect_to(book_path(@book.id),notice: "successfully created comment!")
 		else
 		   @user = User.find(@book.user_id)
 		   @book = Book.find(@book.id)
