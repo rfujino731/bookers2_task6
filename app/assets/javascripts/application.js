@@ -47,3 +47,4 @@ function user_book_2(){
 		// 		<%= f.submit :search %>
 		// 		<% end %>
 
+

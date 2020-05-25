@@ -1,0 +1,5 @@
+
+$('#favorite_buttons_<%= @book.id %>').html("<%= j(render partial: 'favorites/favorite', locals: {book: @book}) %>");
+
+// var title = "javascriptが使えました";
+// alert(title);
